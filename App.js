@@ -1,18 +1,26 @@
+import 'react-native-gesture-handler';
 
 import React from 'react';
-import {Text, View } from 'react-native';
+import {Text, View, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Container } from './src/styles';
-import firebase from './src/services/firebaseConnection';
+
+import AuthProvider from './src/contexts/auth';
+
+import Routes from './src/routes/index';
 
 
 
 export default function App() {
   return (
-    <Container>
-      
-    </Container>
+    <NavigationContainer>
+      <AuthProvider>
+        <StatusBar backgroundColor="#131313" barStyle="light-content" />
+        <Routes />
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 
