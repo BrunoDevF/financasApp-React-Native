@@ -3,9 +3,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Text, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Container } from './src/styles';
 
 import AuthProvider from './src/contexts/auth';
 

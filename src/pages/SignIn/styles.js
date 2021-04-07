@@ -1,7 +1,5 @@
 import styled from 'styled-components/native';
-/***
- *  Background, Container, Logo, AreaInput, Input 
- */
+
 export const Background = styled.View`
     flex: 1;
     background-color: #131313;
@@ -18,7 +16,6 @@ export const AreaInput = styled.View`
     flex-direction: row;
 `;
 export const Input = styled.TextInput.attrs({
-
     placeholderTextColor: 'rgba(255,255,255,0.20)'
 })`
     background: rgb(0,0,15);

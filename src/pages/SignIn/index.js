@@ -1,5 +1,6 @@
-import React, {useState, useContext} from 'react';
+import React,{ useState, useContext } from 'react';
 import { Platform } from 'react-native';
+
 import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText,
         Link, LinkText } from './styles';
 
@@ -33,7 +34,7 @@ export default function SignIn() {
             placeholder="Digite seu email"
             autoCorrect={false}
             autoCapitalize="none"
-            value={ email }
+            value={email}
             onChangeText={ (text) => setEmail(text) }
           />
         </AreaInput>
@@ -42,7 +43,7 @@ export default function SignIn() {
             placeholder="Digite sua senha"
             autoCorrect={false}
             autoCapitalize="none"
-            value={ password }
+            value={password}
             onChangeText={ (text) => setPassword(text) }
           />
         </AreaInput>
@@ -51,7 +52,7 @@ export default function SignIn() {
           <SubmitText>Acessar conta</SubmitText>
         </SubmitButton>
 
-        <Link onPress={ () =>navigation.navigate('SignUp') }>
+        <Link onPress={ ()=>navigation.navigate('SignUp') }>
           <LinkText>Criar uma conta</LinkText>
         </Link>
       </Container>
