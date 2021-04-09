@@ -6,6 +6,7 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [loadingAuth, setLoadingAuth] = useState(false);
     
     // Verifica se existe o async storage e seta o `user`
     useEffect( () =>{
@@ -28,6 +29,7 @@ export default function AuthProvider({ children }) {
 
     //logar com email e senha
     async function signIn(email, password){
+        setLoadingAuth(true);
         await firebase.auth().signInWithEmailAndPassword(email, password)
         .then( async (value) => {
             let uid =  value.user.uid;
@@ -40,14 +42,17 @@ export default function AuthProvider({ children }) {
                 };
                 setUser(data); 
                 storageUser(data);
+                setLoadingAuth(false);
             } )
         } )
         .catch( (error) =>{
             alert('Houve um erro ao fazer login! '+ error.code);
+            setLoadingAuth(false);
         } )
     }
     //Cadastrar usuario
     async function signUp(email,password,nome){
+        setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(async (value)=>{
             let uid = value.user.uid;
@@ -62,11 +67,13 @@ export default function AuthProvider({ children }) {
                     email: value.user.email
                 };
                 setUser(data);
-                storageUser(data)
+                storageUser(data);
+                setLoadingAuth(false);
             })
         })
         .catch( (error) =>{
-            alert( error.code);
+            alert(error.code);
+            setLoadingAuth(false);
         } )
     }
 
@@ -80,7 +87,7 @@ export default function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{ signed: !!user, user,
-         signUp, signIn, signOut, loading}} >
+         signUp, signIn, signOut, loading, loadingAuth}} >
             { children }
         </AuthContext.Provider>
     );
