@@ -1,12 +1,13 @@
 import React from 'react';
-import { View,Text } from 'react-native';
+import { View,Text, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
                 <TipoText>Receita</TipoText>
 import {Container,Tipo,IconView,ValorText,TipoText} from './styles';
 
 // 
-export default function HistoricoList({ data }) {
+export default function HistoricoList({ data, deleteItem }) {
  return (
+<TouchableWithoutFeedback onLongPress={()=>{deleteItem(data)}}>
    <Container>
        <Tipo>
            <IconView tipo={data.tipo}>
@@ -20,8 +21,9 @@ export default function HistoricoList({ data }) {
            </IconView>
        </Tipo>
        <ValorText>
-           R$ {data.valor}
+           R$ {data.valor} 
        </ValorText>
    </Container>
+</TouchableWithoutFeedback>
   );
 }
